@@ -1,4 +1,4 @@
-canvas = document.getElementById( "gl-canvas" );
+canvas = document.getElementById( "multi-canvas" );
 
 var gl = canvas.getContext("webgl")
 || canvas.getContext("experimental-webgl");
