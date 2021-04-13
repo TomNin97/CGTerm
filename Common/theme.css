@@ -1,0 +1,21 @@
+td{
+	text-align: left;
+}
+
+body{
+	background-color: seashell;
+	font-family:georgia;
+}
+
+a.one:link, a:visited{
+    color:cadetblue;
+}
+
+a.two:link, b:visited{
+    color:cadetblue;
+}
+
+.bottom{
+    position:fixed;
+    bottom: 0;
+}
