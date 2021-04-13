@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <head>
+	<script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/m4.js"></script>
+    <script src="../Common/primitives.js"></script>
 	<script src="cone.js" defer></script>
-	<link rel="stylesheet" href="../common/theme.css">
+	<link rel="stylesheet" href="../Common/theme.css">
 </head>
 <body>
 	<table style="width:100%">
@@ -15,5 +18,29 @@
 	</table>
 	<a href="../index.html">Back</a>
 </body>
-</html>
 
+<script  id="vertex-shader" type="x-shader/x-vertex">
+	attribute vec4 a_position;
+	attribute vec4 a_color;
+	uniform mat4 u_matrix;
+	varying vec4 v_color;
+	
+	void main() {
+	  
+	  gl_Position = u_matrix * a_position;
+	  v_color = a_color;
+	}
+	</script>
+	
+	<script  id="fragment-shader" type="x-shader/x-fragment">
+	precision mediump float;
+	
+	varying vec4 v_color;
+	uniform vec4 u_colorMult;
+	
+	void main() {
+	   gl_FragColor = v_color * u_colorMult;
+	}
+	</script>
+	
+</html>
