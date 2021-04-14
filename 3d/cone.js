@@ -6,6 +6,8 @@ var zCam = 50;
 
 var tRad = 0;
 var topBool = 0;
+var bottomBool = 1;
+var hRad = 20
 function main() {
 
 // declare the canvas, check for webgl  
@@ -16,7 +18,7 @@ var gl = canvas.getContext("webgl")
 if ( !gl ) { alert( "WebGL isn't available" ); }
 
 // declare the buffer using the library class function
-coneBufferInfo = primitives.createTruncatedConeWithVertexColorsBufferInfo(gl, 15, tRad, 20, 25, 15, true, topBool);
+coneBufferInfo = primitives.createTruncatedConeWithVertexColorsBufferInfo(gl, 15, tRad, hRad, 25, 15, bottomBool, topBool);
 
 // program set up
 var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader", "fragment-shader"]);
@@ -99,15 +101,26 @@ document.getElementById("sliderZ").onchange = function(event) {
 
 function changeCone() {
   tRad = document.getElementById("tRad").value;
+  hRad = document.getElementById("hRad").value;
   
   var topBoolElements = document.getElementsByName('topRadio');
 
-  for(i = 0; i < topBoolElements.length; i++) {
-    if(topBoolElements[i].checked) {
-    alert("hey it worked");
-    topBool =  topBoolElements[i].value;
-    }
+  // change bool for top 
+  if (topBoolElements[0].checked) {
+    topBool = true;
   }
-  
+  else if (topBoolElements[1].checked) {
+    topBool = false;
+  }
+
+  // change bool for bottom 
+  var bottomBoolElements = document.getElementsByName('bottomRadio');
+
+  if (bottomBoolElements[0].checked) {
+    bottomBool = true;
+  }
+  else if (bottomBoolElements[1].checked) {
+    bottomBool = false;
+  }
     main();
 };
