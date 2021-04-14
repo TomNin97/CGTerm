@@ -7,17 +7,58 @@
 	<link rel="stylesheet" href="../Common/theme.css">
 </head>
 <body>
-	<table style="width:100%">
+	<table>
 		<td style="width:512px">
 			<canvas id="cone-canvas" width="512" height="512"></canvas>
 		</td>
 		<td>
-			<h1> This is a test! </h1>
-			<h2> Here we explain more about the shape! </h2>
+			<h1> This is a cone! </h1>
+			<h3> Since webGl creates shapes primarily with vertices, curved shapes are created using many squares and triangles. </h3>
+			<h3> As such, the cone buffer class takes in several more parameters than a simple cube.</h3>
+			<h3> The parameters in order are: The radius of the bottom circle, the radius of the top circle (for a cone, this value should be zero),
+				 the number of subdivisons or squares horizontally around the cone, the number of subdivison squares vertically on the cone, and finally
+				  whether or not there is a top circle, and another bool to determine a bottom circle.</h3>
 		</td>
 	</table>
+
+	<header2> Adjust View</header2><br>  
+    <div>
+      X axis 0 <input id="sliderX" type="range"
+       min="0" max="180" step="10" value="45"
+        />
+       180
+      </div><br/>
+      
+      <div>
+      Y axis 0 <input id="sliderY" type="range"
+       min="0" max="180" step="10" value="30"
+        />
+       180
+      </div><br/>
+      
+      <div>
+      Z axis 0 <input id="sliderZ" type="range"
+       min="0" max="180" step="10" value="50"
+        />
+       180
+      </div><br/>
+      
+
+		<label for="tRad">Top Radius:</label><br>
+		<input type="number" id="tRad" name="tRad" value="0"><br><br>
+
+		<label for="topRadio"> Top Circle Bool:</label><br>
+		<input type="radio"  name="topRadio" value="true">
+		<label for="True">True</label><br>
+
+		<input type="radio" name="topRadio" value="false">
+		<label for="False">False</label><br><br>
+
+	  	<button onclick="changeCone()"> Submit </button>
+
 	<a href="../index.html">Back</a>
 </body>
+
 
 <script  id="vertex-shader" type="x-shader/x-vertex">
 	attribute vec4 a_position;
@@ -32,7 +73,7 @@
 	}
 	</script>
 	
-	<script  id="fragment-shader" type="x-shader/x-fragment">
+<script  id="fragment-shader" type="x-shader/x-fragment">
 	precision mediump float;
 	
 	varying vec4 v_color;

@@ -1,21 +1,33 @@
-// Render a cone in the page
+// Render a cone
+
+var xCam = 45;
+var yCam = 30;
+var zCam = 50;
+
+var tRad = 0;
+var topBool = 0;
 function main() {
+
+// declare the canvas, check for webgl  
 canvas = document.getElementById( "cone-canvas" );
 
 var gl = canvas.getContext("webgl")
 || canvas.getContext("experimental-webgl");
 if ( !gl ) { alert( "WebGL isn't available" ); }
 
-const coneBufferInfo = primitives.createTruncatedConeWithVertexColorsBufferInfo(gl, 15, 0, 20, 25, 15, true, false);
+// declare the buffer using the library class function
+coneBufferInfo = primitives.createTruncatedConeWithVertexColorsBufferInfo(gl, 15, tRad, 20, 25, 15, true, topBool);
 
 // program set up
 var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader", "fragment-shader"]);
 
+// declare cone colors
 var coneUniforms = {
     u_colorMult: [1, 0.5, 1, 1],
     u_matrix: m4.identity(),
   };
 
+// set cone position relative to canvas origin
 var coneTranslation  = [0, 0, 0];
 
 // rotation matrix
@@ -47,7 +59,7 @@ function drawScene() {
   var projectionMatrix = m4.perspective(45, aspect, 1, 2000);
 
   // Camera view coordinates
-  var cameraPosition = [45, 30, 50];
+  var cameraPosition = [xCam, yCam, zCam];
   var target = [0, 0, 0];
   var up = [0, 1, 0];
   var cameraMatrix = m4.lookAt(cameraPosition, target, up);
@@ -56,6 +68,7 @@ function drawScene() {
 
   gl.useProgram(programInfo.program);
 
+  // draw the cone
   webglUtils.setBuffersAndAttributes(gl, programInfo, coneBufferInfo);
   coneUniforms.u_matrix = computeMatrix(viewProjectionMatrix, coneTranslation,
   0,0,0);
@@ -69,3 +82,32 @@ function drawScene() {
 }
 
 main();
+
+// camera sliders
+document.getElementById("sliderX").onchange = function(event) {
+  xCam = event.target.value;
+  main();
+};
+document.getElementById("sliderY").onchange = function(event) {
+   yCam = event.target.value;
+   main();
+};
+document.getElementById("sliderZ").onchange = function(event) {
+   zCam =  event.target.value;
+   main();
+};
+
+function changeCone() {
+  tRad = document.getElementById("tRad").value;
+  
+  var topBoolElements = document.getElementsByName('topRadio');
+
+  for(i = 0; i < topBoolElements.length; i++) {
+    if(topBoolElements[i].checked) {
+    alert("hey it worked");
+    topBool =  topBoolElements[i].value;
+    }
+  }
+  
+    main();
+};

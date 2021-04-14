@@ -3,7 +3,7 @@ td{
 }
 
 body{
-	background-color: seashell;
+	background-color: beige;
 	font-family:georgia;
 }
 
@@ -18,4 +18,11 @@ a.two:link, b:visited{
 .bottom{
     position:fixed;
     bottom: 0;
+}
+
+table, th, td {
+    border: 5px solid black;
+    width: 100%;
+    background-color: BlanchedAlmond;
+
 }
