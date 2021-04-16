@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <head>
+	<script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/m4.js"></script>
+    <script src="../Common/primitives.js"></script>
 	<script src="multi.js" defer></script>
+	<link rel="stylesheet" href="../Common/theme.css">
 	<style>
 	td {
 	  text-align: left;
@@ -13,11 +17,57 @@
 			<canvas id="multi-canvas" width="512" height="512"></canvas>
 		</td>
 		<td>
-			<h1> This is a test! </h1>
+			<h1> This is a demonstration of multiple shapes! </h1>
 			<h2> Here we explain more about the shape! </h2>
 		</td>
 	</table>
+	<header2> Adjust View</header2><br>  
+    <div>
+      X axis 0 <input id="sliderX" type="range"
+       min="-360" max="360" step="10" value="65"
+        />
+       360
+      </div><br/>
+      
+      <div>
+      Y axis 0 <input id="sliderY" type="range"
+       min="-360" max="360" step="10" value="65"
+        />
+       360
+      </div><br/>
+      
+      <div>
+      Z axis 0 <input id="sliderZ" type="range"
+       min="-360" max="360" step="10" value="250"
+        />
+       360
+      </div><br/>
 	<a href="../index.html">Back</a>
 </body>
+
+<script  id="vertex-shader" type="x-shader/x-vertex">
+	attribute vec4 a_position;
+	attribute vec4 a_color;
+	uniform mat4 u_matrix;
+	varying vec4 v_color;
+	
+	void main() {
+	  
+	  gl_Position = u_matrix * a_position;
+	  v_color = a_color;
+	}
+	</script>
+	
+<script  id="fragment-shader" type="x-shader/x-fragment">
+	precision mediump float;
+	
+	varying vec4 v_color;
+	uniform vec4 u_colorMult;
+	
+	void main() {
+	   gl_FragColor = v_color * u_colorMult;
+	}
+	</script>
+	
 </html>
 
