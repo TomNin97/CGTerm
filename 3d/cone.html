@@ -15,9 +15,12 @@
 			<h1> This is a cone! </h1>
 			<h3> Since webGl creates shapes primarily with vertices, curved shapes are created using many squares and triangles. </h3>
 			<h3> As such, the cone buffer class takes in several more parameters than a simple cube.</h3>
-			<h3> The parameters in order are: The radius of the bottom circle, the radius of the top circle (for a cone, this value should be zero),
+			<h3> The parameters in order are: The radius of the bottom circle, the radius of the top circle (for a cone, this value should be zero), the height of the cone,
 				 the number of subdivisons or squares horizontally around the cone, the number of subdivison squares vertically on the cone, and finally
-				  whether or not there is a top circle, and another bool to determine a bottom circle.</h3>
+				 whether or not there is a top circle, and another bool to determine a bottom circle.</h3>
+			<h3> By setting the Top Circle Bool parameter to true, and providing a value other than zero for the radius of the top circle, a cylinder can be created in a similar manner.
+				 You can use the controls below the canvas to demonstrate this.
+			</h3>
 		</td>
 	</table>
 
@@ -31,7 +34,7 @@
       
       <div>
       Y axis 0 <input id="sliderY" type="range"
-       min="0" max="180" step="10" value="30"
+       min="-180" max="180" step="10" value="30"
         />
        180
       </div><br/>
@@ -43,16 +46,29 @@
        180
       </div><br/>
       
-
+	  	<!-- Set the radius of the top circle-->
 		<label for="tRad">Top Radius:</label><br>
 		<input type="number" id="tRad" name="tRad" value="0"><br><br>
 
+		<!-- Set the height of the cone-->
+		<label for="hRad">Height:</label><br>
+		<input type="number" id="hRad" name="hRad" value="20"><br><br>
+
+		<!-- Set whether the top circle appears or not-->
 		<label for="topRadio"> Top Circle Bool:</label><br>
 		<input type="radio"  name="topRadio" value="true">
-		<label for="True">True</label><br>
+		<label for="topTrue">True</label><br>
 
 		<input type="radio" name="topRadio" value="false">
-		<label for="False">False</label><br><br>
+		<label for="topFalse">False</label><br><br>
+
+		<!-- Set whether the bottom circle appears or not-->
+		<label for="bottomRadio"> Bottom Circle Bool:</label><br>
+		<input type="radio"  name="bottomRadio" value="true">
+		<label for="botTrue">True</label><br>
+
+		<input type="radio" name="bottomRadio" value="false">
+		<label for="botFalse">False</label><br><br>
 
 	  	<button onclick="changeCone()"> Submit </button>
 
