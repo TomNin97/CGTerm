@@ -2,25 +2,56 @@
 <head>
 	<title>WebGL Learning Studio</title>
 	<link rel="stylesheet" href="common/theme.css"></head>
+	<script src="Common/webgl-utils.js"></script>
+    <script src="Common/m4.js"></script>
+    <script src="Common/primitives.js"></script>
+    <script src="2d/square.js" defer></script>
+    <script src="2d/triangle.js" defer></script>
+    <script src="3d/cone.js" defer></script>
+    <script src="3d/cube.js" defer></script>
 <body>
-	<table style="width:100%">
+	<table style="width:100%;">
 		<h1 style=text-align:center;color:cadetblue;text-decoration:underline> WebGL Learning Studio </h1>
 		<h3 style=text-align:center;font-style:italic>Welcome to the Interactive WebGL Learning Studio! Here you will learn how to program 2D and 3D shapes using WebGL.</h3>
-		<td style="width:150px;">
-			<h2>2D Shapes</h2>
-			<h3 style=color:cadetblue><a class="one" href="2d/triangle.html">Triangle</a></h3>
-			<h3 style=color:cadetblue><a class="one" href="2d/square.html">Square</a></h3>
-			<hr>
-			<h2>3D Shapes</h2>
-			<h3><a class="one" href="3d/cube.html">Cube</a></h3>
-			<h3><a class="one" href="3d/cone.html">Cone</a></h3>
-			<hr>
-			<h2><a class="one" href="multi/multi.html">Complex</a></h2>
-		</td>
-		<td style="text-align: center">
-			<h1> This is a test! </h1>
-			<h2> Here we explain more about the website! </h2>
-		</td>
+		<tr>
+			<td style="width:50%;text-align:center;">
+				<h3>2D Shapes</h3>
+			</td>
+			<td style="text-align:center;">
+				<h3>3D Shapes</h3>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:50%;text-align:center;">
+				<a class="one" href="2d/square.html">
+					<canvas id="square-canvas" width="256" height="256"></canvas>
+				</a>
+			</td>
+			<td style="text-align:center;">
+				<a class="one" href="3d/cube.html">
+					<canvas id="cube-canvas" width="256" height="256"></canvas>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:50%;text-align:center;">
+				<a class="one" href="2d/triangle.html">
+					<canvas id="triangle-canvas" width="256" height="256"></canvas>
+				</a>
+			</td>
+			<td style="text-align:center;">
+				<a class="one" href="3d/cone.html">
+					<canvas id="cone-canvas" width="256" height="256"></canvas>
+				</a>
+			</td>
+		</tr>
+		<tr >
+			<td colspan="2" style="text-align:center;">
+				<a class="one" href="multi/multi.html">
+					<h1> And when you put shapes together? </h1>
+				</a>
+			</td>
+		</tr>
 	</table>
 	<hr>
 	<h4 style=font-family:georgia;text-align:center;font-style:italic> This website was created by Allan N., John J., Calem M., and Faith S. </h4>
@@ -28,4 +59,49 @@
 	<h4 style=font-family:georgia;text-align:center;font-style:italic> Presentation: </h4>
 	<h4 style=font-family:georgia;text-align:center;font-style:italic> Video Demonstration: </h4>
 </body>
+
+<script  id="vertex-shader-2d" type="x-shader/x-vertex">
+	attribute vec2 a_position;
+
+		void main() {
+			gl_Position = vec4(a_position, 0.0, 1.0);
+		}
+
+	</script>
+
+	<script  id="fragment-shader-2d" type="x-shader/x-fragment">
+		#ifdef GL_ES
+    		precision highp float;
+    		#endif
+			
+			uniform vec4 u_color;
+			
+			void main() {
+				gl_FragColor = u_color;
+		    }
+	</script>
+
+	<script  id="vertex-shader-3d" type="x-shader/x-vertex">
+		attribute vec4 a_position;
+		attribute vec4 a_color;
+		uniform mat4 u_matrix;
+		varying vec4 v_color;
+	
+		void main() {
+	  
+			gl_Position = u_matrix * a_position;
+			v_color = a_color;
+		}
+	</script>
+	
+	<script  id="fragment-shader-3d" type="x-shader/x-fragment">
+		precision mediump float;
+	
+		varying vec4 v_color;
+		uniform vec4 u_colorMult;
+	
+		void main() {
+			gl_FragColor = v_color * u_colorMult;
+		}
+	</script>
 </html>

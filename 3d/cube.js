@@ -15,7 +15,7 @@ function main() {
 	const cubeBufferInfo = primitives.createCubeWithVertexColorsBufferInfo(gl, 30);
 	
 	// Set the Program Up
-	var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader", "fragment-shader"]);
+	var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader-3d", "fragment-shader-3d"]);
 	
 	// Set the Cube Colors
 	var cubeUniforms = {

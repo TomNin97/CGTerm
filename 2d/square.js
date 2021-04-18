@@ -13,8 +13,8 @@ function main() {
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    var v = document.getElementById("vertex-shader").firstChild.nodeValue;
-    var f = document.getElementById("fragment-shader").firstChild.nodeValue;
+    var v = document.getElementById("vertex-shader-2d").firstChild.nodeValue;
+    var f = document.getElementById("fragment-shader-2d").firstChild.nodeValue;
 
     var vs = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vs, v);
