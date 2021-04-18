@@ -9,7 +9,7 @@ function main() {
     var gl = canvas.getContext("webgl")
     || canvas.getContext("experimental-webgl");
     if ( !gl ) { alert( "WebGL isn't available" ); }
-
+   
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -53,6 +53,6 @@ function main() {
     gl.vertexAttribPointer(program.a_position, itemSize, gl.FLOAT, false, 0, 0);
 
     gl.drawArrays(gl.TRIANGLES, 0, numItems);
-}
 
+}
 main();
