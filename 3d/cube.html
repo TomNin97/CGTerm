@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <head>
+	
+	<!-- Scrips to Create the Primitive Objects -->
 	<script src="../Common/webgl-utils.js"></script>
     <script src="../Common/m4.js"></script>
     <script src="../Common/primitives.js"></script>
 	<script src="cube.js" defer></script>
-	<link rel="stylesheet" href="../common/theme.css">
+	<link rel="stylesheet" href="../Common/theme.css">
 </head>
 <body>
+	
+	<!-- Table to Display the Information About the Cube -->
 	<table>
 		<td style="width:512px">
 			<canvas id="cube-canvas" width="512" height="512"></canvas>
@@ -15,29 +19,33 @@
 			<h1> This is an Example of a Cube </h1>
 			<h2> WebGL creates shapes primarily with vertices </h2>
 			<h3> A cube is then created by creating a shape made of multiple triangles. These triangles, with 45, 45, and 90 degree angles, are created with one another to make squares. A total of 8 squares are made with parrallel and/or perpendicular edges to each other to create a cube. </h3>
+			<h3> Since all the cube requires is squares made of triangles, the cube buffer class only takes in two parameters, the webgl canvas and the size of the squares. </h3>
+			<h3> This can be changed by setting one of the values(the cube size) to a variable as shown below. You can change the size of the cube by selecting the size of each square within the cube </h3>
 		</td>
 	</table>
+	
+	<!-- Sliders to Change the Camera Angle -->
 	<header2> Adjust View </header2><br>  
     <div>
-      X axis 0 <input id="sliderX" type="range"
-       min="0" max="180" step="10" value="45"
-        />
+      X axis 0 <input id="sliderX" type="range" min="0" max="180" step="10" value="45"/>
+       180
+      </div><br/>
+      
+      <div> Y axis 0 <input id="sliderY" type="range" min="0" max="180" step="10" value="30"/>
        180
       </div><br/>
       
       <div>
-      Y axis 0 <input id="sliderY" type="range"
-       min="0" max="180" step="10" value="30"
-        />
-       180
-      </div><br/>
-      
-      <div>
-      Z axis 0 <input id="sliderZ" type="range"
-       min="0" max="180" step="10" value="50"
-        />
+      Z axis 0 <input id="sliderZ" type="range" min="0" max="180" step="10" value="50"/>
        180
     </div><br/>
+	
+	<!-- Set the Length of the Cube's Face-->
+	<label for="cubeSize">Cube Size:</label><br>
+	<input type="number" id="cubeSize" name="cubeSize" value="0"><br><br>
+	<button onclick="changeCube()"> Submit </button>
+	
+	<!-- Link to Go Back to the Hom Page -->
 	<a href="../index.html">Back</a>
 </body>
 	<script  id="vertex-shader" type="x-shader/x-vertex">

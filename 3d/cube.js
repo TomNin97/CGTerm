@@ -2,6 +2,7 @@
 var xCam = 45;
 var yCam = 30;
 var zCam = 50;
+var cubeSize = 30;
 
 function main() {
 	// Declare the Canvas and Check for WebGL
@@ -12,7 +13,7 @@ function main() {
 	if ( !gl ) { alert( "WebGL isn't available" ); }
 	
 	// Delcare the Buffer from the Library Class Function
-	const cubeBufferInfo = primitives.createCubeWithVertexColorsBufferInfo(gl, 30);
+	const cubeBufferInfo = primitives.createCubeWithVertexColorsBufferInfo(gl, cubeSize);
 	
 	// Set the Program Up
 	var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader", "fragment-shader"]);
@@ -87,7 +88,11 @@ document.getElementById("sliderZ").onchange = function(event) {
 	zCam =  event.target.value;
 	main();
 };
-		
+	
+function changeCube() {
+	cubeSize = document.getElementById("cubeSize").value;
+	main();
+};	
 		
 		
 	
