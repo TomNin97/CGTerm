@@ -1,6 +1,9 @@
 var gl;
 var points;
 
+var xPos = 20;
+var yPos = 20;
+
 window.onload = function init(){
     var canvas = document.getElementById( "triangle-canvas" );
     gl = canvas.getContext("webgl")
@@ -33,7 +36,16 @@ function render() {
     gl.drawArrays( gl.TRIANGLES, 0, 3 );
 }
 
+document.getElementById("sliderX").onchange = function(event) {
+    xPos = event.target.value;
+    main();
+  };
+  document.getElementById("sliderY").onchange = function(event) {
+     yPos = event.target.value;
+     main();
+  };
 
+  
 
 
 
