@@ -21,7 +21,7 @@ if ( !gl ) { alert( "WebGL isn't available" ); }
 coneBufferInfo = primitives.createTruncatedConeWithVertexColorsBufferInfo(gl, 15, tRad, hRad, 25, 15, bottomBool, topBool);
 
 // program set up
-var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader", "fragment-shader"]);
+var programInfo = webglUtils.createProgramInfo(gl, ["vertex-shader-3d", "fragment-shader-3d"]);
 
 // declare cone colors
 var coneUniforms = {
