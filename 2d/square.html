@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <head>
+	<script src="../Common/webgl-utils.js"></script>
+    <script src="../Common/m4.js"></script>
+    <script src="../Common/primitives.js"></script>
 	<script src="square.js" defer></script>
 	<title>WebGL 2D: Square</title>
 	<link rel="stylesheet" href="../common/theme.css">
 </head>
 <body>
-	<table style="width:100%">
+	<table>
 		<td style="width:512px">
 			<canvas id="square-canvas" width="512" height="512"></canvas>
 		</td>
 		<td>
-			<h1> This is a test! </h1>
-			<h2> Here we explain more about the shape! </h2>
+			<h1> This is a square! </h1>
+			<h2> WebGL creates shapes by drawing points, lines and triangles through code. A square is created by combining two 90 degree triangles. The WebGL coordinate system ranges from -1,-1 to 1,1 with 0,0 being in the center. To create a square, you will need to create an array, or in WebGl, a buffer. Then fill the array with 12 coordinates. 6 points in 2D will form two triangles. The second triangle contains the same coordinates as the first triangle, but negative so that it will be a direct invert. </h2>
 		</td>
 	</table>
 	<a href="../index.html">Back</a>
 </body>
+	<script  id="vertex-shader-2d" type="x-shader/x-vertex">
+	attribute vec2 a_position;
+
+		void main() {
+			gl_Position = vec4(a_position, 0.0, 1.0);
+		}
+
+	</script>
+
+	<script  id="fragment-shader-2d" type="x-shader/x-fragment">
+		#ifdef GL_ES
+    		precision highp float;
+    		#endif
+			
+			uniform vec4 u_color;
+			
+			void main() {
+				gl_FragColor = u_color;
+		    }
+	</script>
 </html>
 
