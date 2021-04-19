@@ -19,13 +19,13 @@
 	</table>
 	<a href="../index.html">Back</a>
 </body>
-	<script id="vertex-shader" type="x-shader/x-vertex">
+	<script id="vertex-shader-tri" type="x-shader/x-vertex">
 		attribute vec4 vPosition;
 		void main(){
 			gl_Position = vPosition;
 		}
 	</script>
-	<script id="fragment-shader" type="x-shader/x-fragment">
+	<script id="fragment-shader-tri" type="x-shader/x-fragment">
 		precision mediump float;
 		void main(){
 			gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );

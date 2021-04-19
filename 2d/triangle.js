@@ -18,7 +18,7 @@ window.onload = function init(){
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
 
-    var program = initShaders( gl, "vertex-shader", "fragment-shader" );
+    var program = initShaders( gl, "vertex-shader-tri", "fragment-shader-tri" );
     gl.useProgram( program );
 
     var bufferId = gl.createBuffer();
